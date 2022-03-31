@@ -1,0 +1,61 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Data Kategori
+            small Dealer Nusantara
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | 
+                li.active 
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Add Data Kategori
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/kategori/add' enctype='multipart/form-data')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Kode Kategori
+                                     input(type='text',value='#{kode_kategori}',name='kode_kategori',placeholder='Enter Kode Kategori').form-control
+                                .form-group
+                                    label
+                                        | Gambar
+                                    input(type='file',name='gambar',placeholder='Enter Gambar').form-control
+                                .form-group
+                                    label
+                                        | Merk
+                                    input(type='text',name='merk',placeholder='Enter Merk').form-control
+                                .form-group
+                                    label
+                                        | Type Motor
+                                    input(type='text',name='type',placeholder='Enter type Motor').form-control
+                                .form-group
+                                    label
+                                        | Nama Motor
+                                    input(type='text',name='nama',placeholder='Enter Nama Motor').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+
+                                a(href='/kategori').btn.btn-primary.pull-right
+                                    | Back

@@ -1,0 +1,74 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Add Data Motor
+            small Dealer Nusantara
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | 
+                li.active 
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | Add Data Motor
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/motor/add')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Kode Motor
+                                     input(type='text',value='#{kode_motor}',name='kode_motor',placeholder='Enter Kode Motor').form-control
+                                .form-group
+                                    label
+                                        | No Rangka
+                                    input(type='text',name='no_rangka',placeholder='Ente No Rangka').form-control
+                                .form-group
+                                    label
+                                        | No Mesin
+                                    input(type='text',name='no_mesin',placeholder='Enter No Mesin').form-control
+                                .form-group
+                                    label
+                                        | Kode Kategori
+                                    input(type='text',name='kode_kategori',placeholder='Enter Kode Kategori').form-control
+                                .form-group
+                                    label
+                                        | Type Motor
+                                    input(type='text',name='type',placeholder='Enter Type Motor').form-control
+                                .form-group
+                                    label
+                                        | Tahun Pembuatan
+                                    input(type='text',name='tahun',placeholder='Enter Tahun Pembuatan').form-control
+                                .form-group
+                                    label
+                                        | Warna Motor
+                                    input(type='text',name='warna',placeholder='Enter Warna Motor').form-control
+                                .form-group
+                                    label
+                                        | Harga
+                                    input(type='text',name='harga',placeholder='Enter Harga').form-control
+                                .form-group
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+
+                                a(href='/motor').btn.btn-primary.pull-right
+                                    | Back

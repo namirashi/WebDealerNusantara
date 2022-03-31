@@ -1,0 +1,79 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Data Kategori Motor
+			small Dealer Nusantara
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| 
+			li.active 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| 
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+			.box-body
+				- if(messages.msg_info)
+					.alert.alert-success.alert-dismissable
+						button.close(type='button', data-dismiss='alert', aria-hidden='true')
+							| ×
+						h4
+							i.icon.fa.fa-check
+							| Success!
+						| !{messages.msg_info}
+				- if(messages.msg_error)
+					.alert.alert-danger.alert-dismissable
+						button.close(type='button', data-dismiss='alert', aria-hidden='true')
+							| ×
+						h4
+							i.icon.fa.fa-ban
+							| Alert!
+						| !{messages.msg_error}
+				a(href='kategori/add').pull-left.btn.btn-primary
+					i.fa.fa-plus 
+					|  Add Data Kategori
+				.data-table(style='background-image: url("https://i.pinimg.com/564x/12/47/a5/1247a52ac88de28a17c47d47c2b5f44d.jpg");background-repeat: no-repeat;background-size: cover;')
+					table.table.table-bordered
+						tr
+							th
+								| No 
+							th
+								| Gambar 
+							th
+								| Kode Kategori
+							th
+								| Merk
+							th
+								| Type Motor
+							th
+								| Nama Motor
+							th
+								| Action
+							if messages.msg_error
+								| !{messages.msg_error}
+							else
+								for row, index in data 
+									tr
+										td #{index+1}
+										td 
+											img(src="/images/upload/#{row.gambar}" height=100 width=170 style="border-radius:20px")
+										td #{row.kode_kategori}
+										td #{row.merk}
+										td #{row.type}
+										td #{row.nama}
+										td
+											div(style='display:inline-block')
+												a(href='/kategori/edit/#{row.id}').btn.btn-sm.btn-primary
+														i.fa.fa-edit
+											| 
+											div(style='display:inline-block')
+												form(method='post', action='/kategori/delete/#{row.id}')
+													input(type="hidden",name="_method", value="DELETE")
+													button.btn.btn-sm.btn-danger(type='submit')
+														i.fa.fa-remove
